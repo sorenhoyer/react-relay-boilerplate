@@ -1,10 +1,3 @@
-# To keep in sync, never commit schema.server.graphql, but fetch it from graphql introspection query
-client/schema.server.graphql
-
-# For security never commit .env file for server applications
-server/**/.env
-!server/**/.env.example
-
 cache/
 
 # Logs
@@ -55,7 +48,9 @@ dist/
 *.user
 *.userosscache
 *.sln.docstates
-.vscode/
+
+# Visual Studio Code
+.vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
 
@@ -76,3 +71,10 @@ bld/
 
 # Mac OSX
 .DS_Store
+
+# Helps avoid outdated schema.server.graphql, by forcing devs to fetch from graphql introspection query
+client/schema.server.graphql
+
+# For security reasons it's good practice to keep .env file out of source control
+server/**/.env
+!server/**/.env.example
