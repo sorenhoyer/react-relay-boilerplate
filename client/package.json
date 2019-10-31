@@ -103,6 +103,11 @@
     "__generated__"
   ],
   "prettier": "@sorenhoyer/prettier-config",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run type-check && lint-staged"
+    }
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
