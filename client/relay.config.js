@@ -1,0 +1,16 @@
+module.exports = {
+  schema: 'schema.server.graphql',
+  src: 'src',
+  // extensions: ['js'],
+  exclude: [],
+  verbose: true,
+  watchman: false,
+  watch: false,
+  validate: false,
+  quiet: false,
+  persistOutput: undefined,
+  noFutureProofEnums: true,
+  language: 'typescript',
+  // artifactDirectory: 'src/__generated__',
+  customScalars: {},
+};

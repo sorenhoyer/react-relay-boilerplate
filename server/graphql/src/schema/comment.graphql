@@ -1,0 +1,5 @@
+type Comment implements Node {
+  id: ID!
+  text: String!
+  user: User!
+}

@@ -1,0 +1,7 @@
+type Post implements Node {
+  id: ID!
+  title: String!
+  user: User!
+  text: String
+  comments: [Comment]
+}

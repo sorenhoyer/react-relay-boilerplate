@@ -1,0 +1,9 @@
+type Query {
+  node(id: ID!): Node
+
+  me: User
+
+  posts: [Post]
+
+  post(id: ID!): Post
+}

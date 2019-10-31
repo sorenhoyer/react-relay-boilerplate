@@ -1,0 +1,119 @@
+{
+  "name": "react-relay-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build": "webpack --progress --colors --mode=production",
+    "start": "webpack-dev-server --config webpack.config.js --progress --colors --open --mode=development",
+    "fetch-schema": "node scripts/fetch-schema.js",
+    "relay": "relay-compiler",
+    "lint": "npm run type-check && eslint . --ext .js,.jsx,.ts,.tsx --quiet",
+    "lint-fix": "npm run type-check && eslint . --ext .js,.jsx,.ts,.tsx --quiet --fix",
+    "format": "prettier --write \"**/*.+(js|jsx|ts|tsx|json|yml|yaml|css|md)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sorenhoyer/react-relay-boilerplate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sorenhoyer/react-relay-boilerplate/issues"
+  },
+  "homepage": "https://github.com/sorenhoyer/react-relay-boilerplate#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.3",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-numeric-separator": "^7.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "@babel/preset-typescript": "^7.6.0",
+    "@sorenhoyer/eslint-config-react": "^1.0.0",
+    "@sorenhoyer/eslint-config-relay": "^1.0.0",
+    "@sorenhoyer/prettier-config": "^1.0.0",
+    "@types/react": "^16.9.5",
+    "@types/react-dom": "^16.9.1",
+    "@types/react-relay": "^7.0.0",
+    "@types/react-router": "^5.1.1",
+    "@types/react-router-config": "^5.0.1",
+    "@types/react-router-dom": "^5.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.4.0",
+    "@typescript-eslint/parser": "^2.4.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-relay": "^7.0.0",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-json": "^1.4.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.2.0",
+    "eslint-plugin-relay": "^1.3.12",
+    "fork-ts-checker-webpack-plugin": "^1.5.0",
+    "graphql": "^14.5.8",
+    "html-webpack-plugin": "^4.0.0-beta.8",
+    "husky": "^3.0.8",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.18.2",
+    "relay-compiler": "^7.0.0",
+    "relay-compiler-language-typescript": "file:relay-compiler-language-typescript-9.0.1.tgz",
+    "relay-config": "^7.0.0",
+    "typescript": "^3.6.4",
+    "webpack": "^5.0.0-beta.0",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.6.3",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-relay": "^7.0.0",
+    "react-router": "^5.1.2",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^5.1.2"
+  },
+  "browsersList": [
+    "Chrome >= 52",
+    "FireFox >= 44",
+    "Safari >= 9",
+    "Explorer 11",
+    "last 4 Edge versions"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "@sorenhoyer/eslint-config-react",
+      "@sorenhoyer/eslint-config-relay"
+    ]
+  },
+  "eslintIgnore": [
+    ".vscode",
+    "coverage",
+    "dist",
+    "node_modules",
+    "scripts",
+    "webpack",
+    "silent-renew",
+    "__generated__"
+  ],
+  "prettier": "@sorenhoyer/prettier-config",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{md,json}": [
+      "prettier --write",
+      "git add"
+    ],
+    "package-lock.json": [
+      "git rm --cached"
+    ]
+  }
+}

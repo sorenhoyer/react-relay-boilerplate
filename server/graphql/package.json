@@ -1,0 +1,71 @@
+{
+  "name": "graphql",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "npm run copy-graphql && npm run copy-protos && tsc && node dist/index.js",
+    "copy-graphql": "copyfiles -u 1 src/schema/*.graphql dist",
+    "install-or-update-required-vscode-extensions": "bash ./install-or-update-required-vscode-extensions.sh",
+    "lint": "eslint src/**/*.{js,ts}",
+    "lint-fix": "eslint src/**/*.{js,ts} --fix",
+    "start": "ts-node-dev --respawn -r dotenv/config src/index.ts",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^2.9.7",
+    "dataloader": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "merge-graphql-schemas": "^1.7.0"
+  },
+  "devDependencies": {
+    "@sorenhoyer/eslint-config-base": "^1.0.0",
+    "@sorenhoyer/prettier-config": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.4.0",
+    "@typescript-eslint/parser": "^2.4.0",
+    "copyfiles": "^2.1.1",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.18.2",
+    "ts-node-dev": "^1.0.0-pre.43",
+    "typescript": "^3.6.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@sorenhoyer/eslint-config-base"
+    ]
+  },
+  "eslintIgnore": [
+    ".vscode",
+    "coverage",
+    "dist",
+    "node_modules"
+  ],
+  "prettier": "@sorenhoyer/prettier-config",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run type-check && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{md,json}": [
+      "prettier --write",
+      "git add"
+    ],
+    "package-lock.json": [
+      "git rm --cached"
+    ]
+  }
+}
