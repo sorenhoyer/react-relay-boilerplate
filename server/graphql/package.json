@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "build": "npm run copy-graphql && npm run copy-protos && tsc && node dist/index.js",
+    "copy-env": "shx cp .env.example .env",
     "copy-graphql": "copyfiles -u 1 src/schema/*.graphql dist",
     "install-or-update-required-vscode-extensions": "bash ./install-or-update-required-vscode-extensions.sh",
     "lint": "eslint src/**/*.{js,ts}",
@@ -35,6 +36,7 @@
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
+    "shx": "^0.3.2",
     "ts-node-dev": "^1.0.0-pre.43",
     "typescript": "^3.6.4"
   },

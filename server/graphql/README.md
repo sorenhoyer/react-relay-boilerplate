@@ -9,6 +9,6 @@ Alternatively `npm run install-or-update-required-vscode-extensions`
 ### graphql
 
 - `npm i`
-- copy .env.example to .env (.env is deliberately kept out of source control for security reasons
+- `npm run copy-env` to copy .env.example to .env (.env is deliberately kept out of source control for security reasons
 DO NOT put any secret keys in .env.example!)
 - `npm start`
