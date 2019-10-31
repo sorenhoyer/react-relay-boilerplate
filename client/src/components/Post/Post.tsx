@@ -5,7 +5,6 @@ import { Post_item } from './__generated__/Post_item.graphql';
 
 const fragmentSpec = graphql`
   fragment Post_item on Post {
-    id
     title
     text
     commentsCount

@@ -8,7 +8,6 @@ import { AppHeader } from '../..';
 const AppQuery = graphql`
   query AppQuery {
     me {
-      id
       firstName
       lastName
     }
@@ -22,7 +21,7 @@ const App: React.FC<any> = ({ route }) => {
     <div>
       <AppHeader />
       <main>
-        {data.me.firstName} is great!
+        {data.me.firstName} {data.me.lastName} is great!
         {renderRoutes(route.routes)}
       </main>
     </div>

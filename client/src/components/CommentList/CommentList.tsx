@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'react-relay';
 import { useFragment } from 'react-relay/hooks';
-import { Comment } from '..';
+import Comment from '../Comment/Comment';
 import { CommentList_items } from './__generated__/CommentList_items.graphql';
 
 const fragmentSpec = graphql`

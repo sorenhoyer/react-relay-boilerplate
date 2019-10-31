@@ -9,8 +9,8 @@
     "start": "webpack-dev-server --config webpack.config.js --progress --colors --open --mode=development",
     "fetch-schema": "node scripts/fetch-schema.js",
     "relay": "relay-compiler",
-    "lint": "npm run type-check && eslint . --ext .js,.jsx,.ts,.tsx --quiet",
-    "lint-fix": "npm run type-check && eslint . --ext .js,.jsx,.ts,.tsx --quiet --fix",
+    "lint": "npm run type-check && eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint-fix": "npm run type-check && eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "format": "prettier --write \"**/*.+(js|jsx|ts|tsx|json|yml|yaml|css|md)\""
   },
   "repository": {

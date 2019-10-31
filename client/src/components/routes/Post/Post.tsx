@@ -20,9 +20,10 @@ const Post: React.FC<any> = ({ match, history }) => {
 
   return (
     <>
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a
         href="#"
-        onClick={e => {
+        onClick={(e): void => {
           e.preventDefault();
           history.goBack();
         }}

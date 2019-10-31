@@ -10,7 +10,7 @@ const PostsQuery = graphql`
   }
 `;
 
-const Posts: React.FC<any> = () => {
+const Posts: React.FC<{}> = () => {
   const data = useLazyLoadQuery(PostsQuery, {}) as PostsQueryResponse;
 
   return (

@@ -1,5 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ConnectionHandler, Environment, FetchFunction, Network, RecordSource, Store } from 'relay-runtime';
-import { CommentsHandler } from './relay/handlers';
+import { CommentsHandler } from './handlers';
 
 const fetchQuery: FetchFunction = async (operation, variables) => {
   const response = await fetch('http://localhost:4000/graphql', {
@@ -17,14 +18,15 @@ const fetchQuery: FetchFunction = async (operation, variables) => {
   return response.json();
 };
 
-const handlerProvider = (handle: string) => {
+const handlerProvider = (handle: string): unknown => {
   switch (handle) {
     case 'connection':
       return ConnectionHandler;
     case 'comments':
       return CommentsHandler;
+    default:
+      throw new Error(`handlerProvider: No handler provided for ${handle}`);
   }
-  throw new Error(`handlerProvider: No handler provided for ${handle}`);
 };
 
 const environment = new Environment({

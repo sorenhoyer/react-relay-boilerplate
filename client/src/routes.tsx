@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Redirect } from 'react-router';
 import { RouteConfig } from 'react-router-config';
 import { App, Home, Post, Posts } from './components/routes';
@@ -11,7 +11,7 @@ export default [
       {
         exact: true,
         path: '/',
-        render: () => <Redirect from="/" to="/home" />,
+        render: (): ReactNode => <Redirect from="/" to="/home" />,
       },
       {
         component: Home,

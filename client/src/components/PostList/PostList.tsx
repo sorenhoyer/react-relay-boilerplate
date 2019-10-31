@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'react-relay';
 import { useFragment } from 'react-relay/hooks';
 import { Link } from 'react-router-dom';
-import { Post } from '..';
+import Post from '../Post/Post';
 import { PostList_items } from './__generated__/PostList_items.graphql';
 
 const fragmentSpec = graphql`

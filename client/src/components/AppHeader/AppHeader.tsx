@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const AppHeader: React.FC<any> = () => {
+const AppHeader: React.FC<{}> = () => {
   return (
     <div>
       <h3>AppHeader</h3>
