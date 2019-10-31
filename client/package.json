@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch",
     "build": "webpack --progress --colors --mode=production",
-    "start": "webpack-dev-server --config webpack.config.js --progress --colors --open --mode=development",
     "fetch-schema": "node scripts/fetch-schema.js",
-    "relay": "relay-compiler",
+    "format": "prettier --write \"**/*.+(js|jsx|ts|tsx|json|yml|yaml|css|md)\"",
+    "install-or-update-required-vscode-extensions": "bash ./install-or-update-required-vscode-extensions.sh",
     "lint": "npm run type-check && eslint . --ext .js,.jsx,.ts,.tsx",
     "lint-fix": "npm run type-check && eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "format": "prettier --write \"**/*.+(js|jsx|ts|tsx|json|yml|yaml|css|md)\""
+    "relay": "relay-compiler",
+    "start": "webpack-dev-server --config webpack.config.js --progress --colors --open --mode=development",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch"
   },
   "repository": {
     "type": "git",
@@ -63,7 +64,7 @@
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
     "relay-compiler": "^7.0.0",
-    "relay-compiler-language-typescript": "file:relay-compiler-language-typescript-9.0.1.tgz",
+    "relay-compiler-language-typescript": "^10.0.0",
     "relay-config": "^7.0.0",
     "typescript": "^3.6.4",
     "webpack": "^5.0.0-beta.0",
@@ -86,6 +87,20 @@
     "Explorer 11",
     "last 4 Edge versions"
   ],
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/typescript",
+      "@babel/react"
+    ],
+    "plugins": [
+      "relay",
+      "@babel/plugin-transform-runtime",
+      "@babel/plugin-proposal-numeric-separator",
+      "@babel/proposal-class-properties",
+      "@babel/proposal-object-rest-spread"
+    ]
+  },
   "eslintConfig": {
     "extends": [
       "@sorenhoyer/eslint-config-react",
