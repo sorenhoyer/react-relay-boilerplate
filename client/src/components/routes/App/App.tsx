@@ -2,10 +2,11 @@ import React from 'react';
 import { graphql } from 'react-relay';
 import { renderRoutes } from 'react-router-config';
 import { useLazyLoadQuery } from 'react-relay/hooks';
-import { AppQueryResponse } from './__generated__/AppQuery.graphql';
+import { AppQuery } from './__generated__/AppQuery.graphql';
 import { AppHeader } from '../..';
+import { AppProps } from './types';
 
-const AppQuery = graphql`
+const appQuery = graphql`
   query AppQuery {
     me {
       firstName
@@ -14,14 +15,14 @@ const AppQuery = graphql`
   }
 `;
 
-const App: React.FC<any> = ({ route }) => {
-  const data = useLazyLoadQuery(AppQuery, {}) as AppQueryResponse;
+const App: React.FC<AppProps> = ({ route }) => {
+  const { me } = useLazyLoadQuery<AppQuery>(appQuery, {});
 
   return (
     <div>
       <AppHeader />
       <main>
-        {data.me.firstName} {data.me.lastName} is great!
+        {me.firstName} {me.lastName} is great!
         {renderRoutes(route.routes)}
       </main>
     </div>

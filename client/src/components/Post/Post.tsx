@@ -1,9 +1,9 @@
 import React from 'react';
 import { graphql } from 'react-relay';
 import { useFragment } from 'react-relay/hooks';
-import { Post_item } from './__generated__/Post_item.graphql';
+import { Props } from './types';
 
-const fragmentSpec = graphql`
+const postItemFragment = graphql`
   fragment Post_item on Post {
     title
     text
@@ -11,14 +11,14 @@ const fragmentSpec = graphql`
   }
 `;
 
-const Post: React.FC<any> = ({ item }) => {
-  const data: Post_item = useFragment(fragmentSpec, item);
+const Post: React.FC<Props> = ({ item }) => {
+  const { commentsCount, text, title } = useFragment(postItemFragment, item);
 
   return (
     <div>
-      <h3>{data.title}</h3>
-      <p>{data.text}</p>
-      <p>Number of comments: {data.commentsCount}</p>
+      <h3>{title}</h3>
+      <p>{text}</p>
+      <p>Number of comments: {commentsCount}</p>
     </div>
   );
 };

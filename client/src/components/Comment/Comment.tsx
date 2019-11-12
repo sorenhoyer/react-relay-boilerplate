@@ -1,9 +1,9 @@
 import React from 'react';
 import { graphql } from 'react-relay';
 import { useFragment } from 'react-relay/hooks';
-import { Comment_item } from './__generated__/Comment_item.graphql';
+import { Props } from './types';
 
-const fragmentSpec = graphql`
+const commentItemFragment = graphql`
   fragment Comment_item on Comment {
     text
     user {
@@ -12,13 +12,13 @@ const fragmentSpec = graphql`
   }
 `;
 
-const Comment: React.FC<any> = ({ item }) => {
-  const data: Comment_item = useFragment(fragmentSpec, item);
+const Comment: React.FC<Props> = ({ item }) => {
+  const { text, user } = useFragment(commentItemFragment, item);
 
   return (
     <div>
-      <p>{data.text}</p>
-      <p>{data.user.firstName}</p>
+      <p>{text}</p>
+      <p>{user.firstName}</p>
     </div>
   );
 };

@@ -9,7 +9,7 @@ const Root: React.FC<{}> = () => {
   return (
     <BrowserRouter>
       <RelayEnvironmentProvider environment={environment}>
-        <Suspense fallback={<div>Loading....</div>}>{renderRoutes(routes)}</Suspense>
+        <Suspense fallback={<div>Loading...</div>}>{renderRoutes(routes)}</Suspense>
       </RelayEnvironmentProvider>
     </BrowserRouter>
   );

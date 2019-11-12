@@ -2,9 +2,9 @@ import React from 'react';
 import { graphql } from 'react-relay';
 import { useFragment } from 'react-relay/hooks';
 import Comment from '../Comment/Comment';
-import { CommentList_items } from './__generated__/CommentList_items.graphql';
+import { Props } from './types';
 
-const fragmentSpec = graphql`
+const commentListItemsFragment = graphql`
   fragment CommentList_items on Post {
     comments @__clientField(handle: "comments") {
       ...Comment_item
@@ -12,12 +12,12 @@ const fragmentSpec = graphql`
   }
 `;
 
-const CommentList: React.FC<any> = ({ items }) => {
-  const data: CommentList_items = useFragment(fragmentSpec, items);
+const CommentList: React.FC<Props> = ({ items }) => {
+  const { comments } = useFragment(commentListItemsFragment, items);
 
   return (
     <div>
-      {data.comments.map(item => {
+      {comments.map(item => {
         return <Comment item={item} />;
       })}
     </div>

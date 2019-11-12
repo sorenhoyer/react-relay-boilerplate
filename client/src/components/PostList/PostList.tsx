@@ -3,9 +3,9 @@ import { graphql } from 'react-relay';
 import { useFragment } from 'react-relay/hooks';
 import { Link } from 'react-router-dom';
 import Post from '../Post/Post';
-import { PostList_items } from './__generated__/PostList_items.graphql';
+import { Props } from './types';
 
-const fragmentSpec = graphql`
+const postListItemsFragment = graphql`
   fragment PostList_items on Query {
     posts {
       id
@@ -14,12 +14,12 @@ const fragmentSpec = graphql`
   }
 `;
 
-const PostList: React.FC<any> = ({ items }) => {
-  const data: PostList_items = useFragment(fragmentSpec, items);
+const PostList: React.FC<Props> = ({ items }) => {
+  const { posts } = useFragment(postListItemsFragment, items);
 
   return (
     <div>
-      {data.posts.map(item => {
+      {posts.map(item => {
         return (
           <>
             <Post item={item} />
