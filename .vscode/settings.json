@@ -19,6 +19,14 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
+  "eslint.workingDirectories": [
+		{
+			"directory": "client"
+    },
+    {
+			"directory": "server/graphql"
+    },
+	],
   "eslint.autoFixOnSave": true,
   "eslint.validate": [
     "javascript",
