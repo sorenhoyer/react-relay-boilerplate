@@ -29,6 +29,7 @@
     "@babel/plugin-proposal-class-properties": "^7.7.0",
     "@babel/plugin-proposal-numeric-separator": "^7.2.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
@@ -73,8 +74,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.2",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
+    "react": "^0.0.0-experimental-b53ea6ca0",
+    "react-dom": "^0.0.0-experimental-b53ea6ca0",
     "react-relay": "^0.0.0-experimental-a1a40b68",
     "react-router": "^5.1.2",
     "react-router-config": "^5.1.1",
@@ -95,6 +96,7 @@
     ],
     "plugins": [
       "relay",
+      "@babel/plugin-proposal-optional-chaining",
       "@babel/plugin-transform-runtime",
       "@babel/plugin-proposal-numeric-separator",
       "@babel/proposal-class-properties",

@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { graphql } from 'react-relay';
-import { renderRoutes } from 'react-router-config';
-import { useLazyLoadQuery } from 'react-relay/hooks';
+import { usePreloadedQuery } from 'react-relay/hooks';
+import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes';
 import { AppQuery } from './__generated__/AppQuery.graphql';
 import { AppHeader } from '../..';
-import { AppProps } from './types';
 
 const appQuery = graphql`
   query AppQuery {
@@ -15,15 +14,22 @@ const appQuery = graphql`
   }
 `;
 
-const App: React.FC<AppProps> = ({ route }) => {
-  const { me } = useLazyLoadQuery<AppQuery>(appQuery, {});
+interface Props {
+  prepared: {
+    appQuery: PreloadedQuery<AppQuery>;
+  };
+  children: React.ReactChildren;
+}
+
+const App: React.FC<Props> = ({ children, prepared }) => {
+  const { me } = usePreloadedQuery(appQuery, prepared.appQuery);
 
   return (
     <div>
       <AppHeader />
       <main>
         {me.firstName} {me.lastName} is great!
-        {renderRoutes(route.routes)}
+        <Suspense fallback="Loading...">{children}</Suspense>
       </main>
     </div>
   );

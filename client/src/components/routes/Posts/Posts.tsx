@@ -1,6 +1,8 @@
 import React from 'react';
 import { graphql } from 'react-relay';
 import { useLazyLoadQuery } from 'react-relay/hooks';
+// eslint-disable-next-line import/no-unresolved
+import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes';
 import { PostList } from '../..';
 import { PostsQuery } from './__generated__/PostsQuery.graphql';
 
@@ -10,8 +12,14 @@ const postsQuery = graphql`
   }
 `;
 
-const Posts: React.FC<{}> = () => {
-  const data = useLazyLoadQuery<PostsQuery>(postsQuery, {});
+interface Props {
+  prepared: {
+    postsQuery: PreloadedQuery<PostsQuery>;
+  };
+}
+
+const Posts: React.FC<Props> = ({ prepared }) => {
+  const data = useLazyLoadQuery<PostsQuery>(postsQuery, prepared.postsQuery);
 
   return (
     <div>

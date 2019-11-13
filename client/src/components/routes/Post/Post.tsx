@@ -1,9 +1,11 @@
 import React from 'react';
 import { graphql } from 'react-relay';
-import { useLazyLoadQuery } from 'react-relay/hooks';
+import { usePreloadedQuery } from 'react-relay/hooks';
+// eslint-disable-next-line import/no-unresolved
+import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes';
 import { CommentList, Post as PostItem } from '../..';
 import { PostQuery } from './__generated__/PostQuery.graphql';
-import { Props } from './types';
+// import { Props } from './types';
 
 const postQuery = graphql`
   query PostQuery($id: ID!) {
@@ -14,10 +16,14 @@ const postQuery = graphql`
   }
 `;
 
-const Post: React.FC<Props> = ({ match, history }) => {
-  const data = useLazyLoadQuery<PostQuery>(postQuery, {
-    id: match.params.id,
-  });
+interface Props {
+  prepared: {
+    postQuery: PreloadedQuery<PostQuery>;
+  };
+}
+
+const Post: React.FC<Props> = ({ /* match, history,  */ prepared }) => {
+  const data = usePreloadedQuery(postQuery, prepared.postQuery);
 
   return (
     <>
@@ -26,7 +32,7 @@ const Post: React.FC<Props> = ({ match, history }) => {
         href="#"
         onClick={(e): void => {
           e.preventDefault();
-          history.goBack();
+          // history.goBack();
         }}
       >
         Back to posts
