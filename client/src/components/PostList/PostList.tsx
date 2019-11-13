@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'react-relay';
 import { useFragment } from 'react-relay/hooks';
-import { Link } from 'react-router-dom';
+import Link from '../../routing/Link';
 import Post from '../Post/Post';
 import { Props } from './types';
 
@@ -21,10 +21,10 @@ const PostList: React.FC<Props> = ({ items }) => {
     <div>
       {posts.map(item => {
         return (
-          <>
+          <div key={item.id}>
             <Post item={item} />
             <Link to={`/post/${item.id}`}>Read more...</Link>
-          </>
+          </div>
         );
       })}
     </div>
