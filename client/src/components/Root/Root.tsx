@@ -1,6 +1,4 @@
-import React, { Suspense } from 'react';
-import { renderRoutes } from 'react-router-config';
-import { BrowserRouter } from 'react-router-dom';
+import React from 'react';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import RelayEnvironment from '../../relay/RelayEnvironment';
 import routes from '../../routes';
@@ -13,14 +11,12 @@ const router = createRouter(routes);
 
 const Root: React.FC<{}> = () => {
   return (
-    <BrowserRouter>
-      <RelayEnvironmentProvider environment={RelayEnvironment}>
-        <RoutingContext.Provider value={router.context}>
-          {/* Render the active route */}
-          <RouterRenderer />
-        </RoutingContext.Provider>
-      </RelayEnvironmentProvider>
-    </BrowserRouter>
+    <RelayEnvironmentProvider environment={RelayEnvironment}>
+      <RoutingContext.Provider value={router.context}>
+        {/* Render the active route */}
+        <RouterRenderer />
+      </RoutingContext.Provider>
+    </RelayEnvironmentProvider>
   );
 };
 

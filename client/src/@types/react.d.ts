@@ -1,4 +1,4 @@
-import * as react from 'react';
+import 'react';
 
 declare module 'react' {
   const useTransition: any;
