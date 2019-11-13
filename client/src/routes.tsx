@@ -1,7 +1,4 @@
-import React, { ReactNode } from 'react';
 import { preloadQuery } from 'react-relay/hooks';
-import { Redirect } from 'react-router';
-import { Home } from './components/routes';
 import JSResource from './JSResource';
 import { RouteConfig } from './routing/createRouter';
 import PreloadAppQuery, { AppQuery } from './components/routes/App/__generated__/AppQuery.graphql';
@@ -15,13 +12,9 @@ export default [
     component: JSResource('App', () => import('./components/routes/App/App')),
     prepare: params => {
       return {
-        rootQuery: preloadQuery<AppQuery>(
+        appQuery: preloadQuery<AppQuery>(
           RelayEnvironment,
           PreloadAppQuery,
-          {
-            owner: 'facebook',
-            name: 'relay',
-          },
           // The fetchPolicy allows us to specify whether to render from cached
           // data if possible (store-or-network) or only fetch from network
           // (network-only).
@@ -45,13 +38,9 @@ export default [
         exact: true,
         path: '/posts',
         prepare: () => ({
-          issuesQuery: preloadQuery<PostsQuery>(
+          postsQuery: preloadQuery<PostsQuery>(
             RelayEnvironment,
             PreloadPostsQuery,
-            {
-              owner: 'facebook',
-              name: 'relay',
-            },
             // The fetchPolicy allows us to specify whether to render from cached
             // data if possible (store-or-network) or only fetch from network
             // (network-only).
@@ -62,7 +51,7 @@ export default [
       {
         component: JSResource('Post', () => import('./components/routes/Post/Post')),
         prepare: params => ({
-          issueDetailQuery: preloadQuery<PostQuery>(
+          postQuery: preloadQuery<PostQuery>(
             RelayEnvironment,
             PreloadPostQuery,
             {
