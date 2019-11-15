@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, Suspense, useTransition } from 'react';
-import RoutingContext, { RouteComponentProps } from './RoutingContext';
+import RoutingContext, { Entry } from './RoutingContext';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 // import './RouteRenderer.css';
 
@@ -7,7 +7,7 @@ const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
 export default function RouterRenderer() {
   // Access the router
-  const router: any = useContext(RoutingContext);
+  const router = useContext(RoutingContext);
   // Improve the route transition UX by delaying transitions: show the previous route entry
   // for a brief period while the next route is being prepared. See
   // https://reactjs.org/docs/concurrent-mode-patterns.html#transitions
@@ -15,12 +15,12 @@ export default function RouterRenderer() {
 
   // Store the active entry in state - this allows the renderer to use features like
   // useTransition to delay when state changes become visible to the user.
-  const [routeEntry, setRouteEntry] = useState(router!.get());
+  const [routeEntry, setRouteEntry] = useState(router.get());
 
   // On mount subscribe to route changes
   useEffect(() => {
     // Check if the route has changed between the last render and commit:
-    const currentEntry = router!.get();
+    const currentEntry = router.get();
     if (currentEntry !== routeEntry) {
       // if there was a concurrent modification, rerender and exit
       setRouteEntry(currentEntry);
@@ -29,7 +29,7 @@ export default function RouterRenderer() {
 
     // If there *wasn't* a concurrent change to the route, then the UI
     // is current: subscribe for subsequent route updates
-    const dispose = router!.subscribe(nextEntry => {
+    const dispose = router.subscribe(nextEntry => {
       // startTransition() delays the effect of the setRouteEntry (setState) call
       // for a brief period, continuing to show the old state while the new
       // state (route) is prepared.
@@ -42,7 +42,7 @@ export default function RouterRenderer() {
     // from the hook deps to avoid recomputing the effect after each change
     // triggered by the effect itself.
     // eslint-disable-next-line
-  }, [router, startTransition])
+  }, [router, startTransition]);
 
   // The current route value is an array of matching entries - one entry per
   // level of routes (to allow nested routes). We have to map each one to a
@@ -62,8 +62,7 @@ export default function RouterRenderer() {
   // To achieve this, we reverse the list so we can start at the bottom-most
   // component, and iteratively construct parent components w the previous
   // value as the child of the next one:
-  const { entries } = routeEntry;
-  const reversedItems = entries.reverse(); // reverse is in place
+  const reversedItems = [...routeEntry.entries].reverse(); // reverse is in place
   const firstItem = reversedItems[0];
   // the bottom-most component is special since it will have no children
   // (though we could probably just pass null children to it)
@@ -94,6 +93,10 @@ export default function RouterRenderer() {
   );
 }
 
+export interface RouteComponentProps extends Entry {
+  children?: JSX.Element;
+}
+
 /**
  * The `component` property from the route entry is a Resource, which may or may not be ready.
  * We use a helper child component to unwrap the resource with component.read(), and then
@@ -107,7 +110,7 @@ export default function RouterRenderer() {
  */
 function RouteComponent(props: RouteComponentProps) {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, react/destructuring-assignment
-  const Component = props.component!.read();
+  const Component = props.component!.read()!;
   const { routeData, prepared } = props;
   // eslint-disable-next-line react/no-children-prop, react/destructuring-assignment
   return <Component routeData={routeData} prepared={prepared} children={props.children} />;

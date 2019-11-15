@@ -13,8 +13,8 @@ export interface RouteConfig {
   path?: string | string[];
   exact?: boolean;
   strict?: boolean;
-  component: Resource;
-  prepare?: (params: { [key: string]: string }) => { [queryName: string]: PreloadedQuery<any> };
+  component: Resource<any>;
+  prepare: (params: { [key: string]: string }) => { [queryName: string]: PreloadedQuery<any> };
   routes?: RouteConfig[];
 }
 
@@ -126,7 +126,7 @@ function prepareMatches(matches: MatchedRoute<{}>[]): Entry[] {
   // eslint-disable-next-line no-shadow
   return matches.map(match => {
     const { route, match: matchData } = match;
-    const prepared = route.prepare!(matchData.params);
+    const prepared = route.prepare(matchData.params);
     const Component = route.component.get();
     if (Component == null) {
       route.component.load(); // eagerly load

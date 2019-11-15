@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { graphql } from 'react-relay';
 import { usePreloadedQuery } from 'react-relay/hooks';
+// eslint-disable-next-line import/no-unresolved
 import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes';
 import { AppQuery } from './__generated__/AppQuery.graphql';
 import { AppHeader } from '../..';

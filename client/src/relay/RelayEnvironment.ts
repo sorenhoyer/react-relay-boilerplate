@@ -2,10 +2,10 @@
 import { ConnectionHandler, Environment, FetchFunction, Network, RecordSource, Store } from 'relay-runtime';
 import { CommentsHandler } from './handlers';
 
-const fetchQuery: FetchFunction = async (operation, variables) => {
+const fetchRelay: FetchFunction = async (params, variables) => {
   const response = await fetch('http://localhost:4000/graphql', {
     body: JSON.stringify({
-      query: operation.text,
+      query: params.text,
       variables,
     }),
     headers: {
@@ -31,7 +31,7 @@ const handlerProvider = (handle: string): unknown => {
 
 const environment = new Environment({
   handlerProvider,
-  network: Network.create(fetchQuery),
+  network: Network.create(fetchRelay),
   store: new Store(new RecordSource()),
 });
 

@@ -6,9 +6,8 @@ import PreloadPostsQuery, { PostsQuery } from './components/routes/Posts/__gener
 import PreloadPostQuery, { PostQuery } from './components/routes/Post/__generated__/PostQuery.graphql';
 import RelayEnvironment from './relay/RelayEnvironment';
 
-export default [
+const routes: RouteConfig[] = [
   {
-    path: '/',
     component: JSResource('App', () => import('./components/routes/App/App')),
     prepare: params => {
       return {
@@ -23,16 +22,6 @@ export default [
       };
     },
     routes: [
-      // {
-      //   exact: true,
-      //   path: '/',
-      //   render: (): ReactNode => <Redirect from="/" to="/home" />,
-      // },
-      // {
-      //   component: Home,
-      //   exact: true,
-      //   path: '/home',
-      // },
       {
         component: JSResource('Posts', () => import('./components/routes/Posts/Posts')),
         exact: true,
@@ -64,4 +53,6 @@ export default [
       },
     ],
   },
-] as RouteConfig[];
+];
+
+export default routes;

@@ -19,7 +19,7 @@ export interface Route {
 }
 
 export interface Entry {
-  component?: Resource;
+  component?: Resource<any>;
   prepared: PreparedQuery;
   routeData: match<{}>;
 }

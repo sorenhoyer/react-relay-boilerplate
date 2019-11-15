@@ -24,9 +24,7 @@ const Posts: React.FC<Props> = ({ prepared }) => {
   return (
     <div>
       <p>PostList</p>
-      <main>
-        <PostList items={data} />
-      </main>
+      <PostList items={data} />
     </div>
   );
 };
