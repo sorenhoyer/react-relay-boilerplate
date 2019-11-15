@@ -938,10 +938,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-relay@^7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@types/react-relay/-/react-relay-7.0.1.tgz#47264f24b9cd5241d69b07c9003f7e9462522163"
-  integrity sha512-ZOivhaCtcwzyQDKEGfRtTCeIpBA+IZMXi0fWoa7q7auvfBsnzvLerphnwvd5yNMeJD29DG99orL23t0k+GZiBQ==
+"@types/react-relay@^7.0.2":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@types/react-relay/-/react-relay-7.0.2.tgz#8115526b4376d3b1e879350f851916998562b2c3"
+  integrity sha512-mypkyrobzswo/uQ3jIeVozQseo/2G68y0yq9NlnsLDWkuwB7N3NYtetY/oiWk2CV2zp5mPwg/cxeiWcDbZ6BVA==
   dependencies:
     "@types/react" "*"
     "@types/relay-runtime" "*"
@@ -964,10 +964,18 @@
     "@types/react" "*"
     "@types/react-router" "*"
 
-"@types/react-router@*", "@types/react-router@^5.1.2":
+"@types/react-router@*":
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-5.1.2.tgz#41e5e6aa333a7b9a2bfdac753c04e1ca4b3e0d21"
   integrity sha512-euC3SiwDg3NcjFdNmFL8uVuAFTpZJm0WMFUw+4eXMUnxa7M9RGFEG0szt0z+/Zgk4G2k9JBFhaEnY64RBiFmuw==
+  dependencies:
+    "@types/history" "*"
+    "@types/react" "*"
+
+"@types/react-router@^5.1.3":
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-5.1.3.tgz#7c7ca717399af64d8733d8cb338dd43641b96f2d"
+  integrity sha512-0gGhmerBqN8CzlnDmSgGNun3tuZFXerUclWkqEhozdLaJtfcJRUTGkKaEKk+/MpHd1KDS1+o2zb/3PkBUiv2qQ==
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
@@ -2570,10 +2578,10 @@ eslint-plugin-prettier@^3.1.1:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-react-hooks@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.2.0.tgz#078264e9e388da6929ace09d6abe92c85963aff4"
-  integrity sha512-jSlnBjV2cmyIeL555H/FbvuSbQ1AtpHjLMHuPrQnt1eVA6lX8yufdygh7AArI2m8ct7ChHGx2uOaCuxq2MUn6g==
+eslint-plugin-react-hooks@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.3.0.tgz#53e073961f1f5ccf8dd19558036c1fac8c29d99a"
+  integrity sha512-gLKCa52G4ee7uXzdLiorca7JIQZPPXRAQDXV83J4bUEeUuc5pIEyZYAZ45Xnxe5IuupxEqHS+hUhSLIimK1EMw==
 
 eslint-plugin-react@^7.16.0:
   version "7.16.0"
@@ -4181,10 +4189,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-lint-staged@^9.4.2:
-  version "9.4.2"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-9.4.2.tgz#14cb577a9512f520691f8b5aefce6a8f7ead6c04"
-  integrity sha512-OFyGokJSWTn2M6vngnlLXjaHhi8n83VIZZ5/1Z26SULRUWgR3ITWpAEQC9Pnm3MC/EpCxlwts/mQWDHNji2+zA==
+lint-staged@^9.4.3:
+  version "9.4.3"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-9.4.3.tgz#f55ad5f94f6e105294bfd6499b23142961f7b982"
+  integrity sha512-PejnI+rwOAmKAIO+5UuAZU9gxdej/ovSEOAY34yMfC3OS4Ac82vCBPzAWLReR9zCPOMqeVwQRaZ3bUBpAsaL2Q==
   dependencies:
     chalk "^2.4.2"
     commander "^2.20.0"
@@ -6867,10 +6875,10 @@ webpack-log@^2.0.0:
     ansi-colors "^3.0.0"
     uuid "^3.3.2"
 
-webpack-sources@2.0.0-beta.6:
-  version "2.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-2.0.0-beta.6.tgz#80707d4e417cf734ec634efcb1cdca4c57aa1be8"
-  integrity sha512-zbYXdCVyNpHFs8vR0O3Tf7kfxmL76RDBGf1kBbeBrW1zlIKAp3msFKBVllwUAfyoMa/5OJ5iQRrqE7zn3eBjbw==
+webpack-sources@2.0.0-beta.7:
+  version "2.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-2.0.0-beta.7.tgz#525b4caaef7371fd7f8bf7e5fffe692880038926"
+  integrity sha512-jbUJbBcU/PHABhHDtUfXCSU6wD6dYOBMH4oIQnXxyapigyuOSHdkmqENayzV+3OEK8tm45qRQD/ggtyAMxqjAQ==
   dependencies:
     source-list-map "^2.0.1"
     source-map "~0.6.1"
@@ -6883,10 +6891,10 @@ webpack-sources@^1.4.3:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^5.0.0-beta.4:
-  version "5.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.0.0-beta.4.tgz#2716838565885745639eaf9baf857d5a0980e864"
-  integrity sha512-Amcfv6WoJA/UGeKIkRY6gbxoxnKOD2X1JdCDQkNXlPBo6Xcqxra0MDUMbGbX9BArrrT7CtAfg9oHkoQx3rdwLA==
+webpack@^5.0.0-beta.6:
+  version "5.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.0.0-beta.6.tgz#ffedfd87970749b3c0a5ff797fb0ff444abd76f7"
+  integrity sha512-fDVd+lo2S7nZYNj6jjAhHP1Q0/XBDKhe6bZr4LiuxSIK+kzOlS4lDU0mGrRvyFJ0KJMoG05+GvMjvm5sjM3tDA==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
@@ -6908,7 +6916,7 @@ webpack@^5.0.0-beta.4:
     tapable "2.0.0-beta.8"
     terser-webpack-plugin "^2.2.1"
     watchpack "2.0.0-beta.9"
-    webpack-sources "2.0.0-beta.6"
+    webpack-sources "2.0.0-beta.7"
 
 websocket-driver@>=0.5.1:
   version "0.7.3"
