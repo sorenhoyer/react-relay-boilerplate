@@ -8,6 +8,36 @@ import RelayEnvironment from './relay/RelayEnvironment';
 
 const routes: RouteConfig[] = [
   {
+    component: JSResource('Login', () => import('./components/routes/Login/Login')),
+    exact: true,
+    path: '/login',
+  },
+  {
+    component: JSResource('Callback', () => import('./components/routes/auth/Callback')),
+    exact: true,
+    path: '/callback',
+  },
+  {
+    component: JSResource('Logout', () => import('./components/routes/auth/Logout')),
+    exact: true,
+    path: '/logout',
+  },
+  {
+    component: JSResource('LogoutCallback', () => import('./components/routes/auth/LogoutCallback')),
+    exact: true,
+    path: '/logout/callback',
+  },
+  {
+    component: JSResource('SilentRenew', () => import('./components/routes/auth/SilentRenew')),
+    exact: true,
+    path: '/silent-renew',
+  },
+  {
+    component: JSResource('Admin', () => import('./components/routes/Admin/Admin')),
+    path: '/admin',
+  },
+  {
+    path: '/',
     component: JSResource('App', () => import('./components/routes/App/App')),
     prepare: params => {
       return {

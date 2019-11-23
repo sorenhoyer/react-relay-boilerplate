@@ -3,14 +3,21 @@
 const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const dotenv = require('dotenv').config({ path: `${__dirname}/.env` });
+const webpack = require('webpack');
 
-const APP_PATH = path.resolve(__dirname, 'src');
+// const APP_PATH = path.resolve(__dirname, 'src');
 
 module.exports = {
-  entry: APP_PATH,
+  devtool: 'cheap-module-source-map',
+  entry: {
+    index: path.join(__dirname, 'src', 'index.tsx'),
+    silentRenew: path.join(__dirname, 'silent-renew', 'index.js'),
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].[hash].js',
     path: path.resolve(__dirname, 'dist'),
+    pathinfo: true,
     publicPath: '/',
   },
   resolve: {
@@ -52,8 +59,16 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.join(APP_PATH, 'index.html'),
+      template: path.join(__dirname, 'index.html'),
     }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'silent-renew', 'silent-renew.html'),
+      filename: 'silent-renew.html',
+    }),
+    new webpack.HotModuleReplacementPlugin(),
     new ForkTsCheckerWebpackPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.parsed),
+    }),
   ],
 };
