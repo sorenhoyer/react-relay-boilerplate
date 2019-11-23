@@ -1,5 +1,5 @@
 import { AuthenticationError } from 'apollo-server-express';
-import { getPostById, getPosts } from '../datasources/MockAPI';
+import { getArticleBySlug, getArticles } from '../datasources/MockAPI';
 import { Context } from '../types';
 
 export default {
@@ -10,19 +10,19 @@ export default {
       return new Promise(resolve => setTimeout(() => resolve(context.me), 4000));
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    post: async (_: unknown, args: any, context: Context): Promise<unknown> => {
+    article: async (_: unknown, args: any, context: Context): Promise<unknown> => {
       // if (!context.me) return new AuthenticationError('Not authenticated!');
 
-      const post = await getPostById(args.id /* , context.me.id */);
-      return new Promise(resolve => setTimeout(() => resolve(post), 2000));
-      // return getPostById(args.id, context.me.id);
+      const article = await getArticleBySlug(args.slug /* , context.me.id */);
+      return new Promise(resolve => setTimeout(() => resolve(article), 2000));
+      // return getArticleById(args.id, context.me.id);
     },
-    posts: async (_: unknown, __: unknown, context: Context): Promise<unknown> => {
+    articles: async (_: unknown, __: unknown, context: Context): Promise<unknown> => {
       // if (!context.me) return new AuthenticationError('Not authenticated!');
 
-      const posts = await getPosts(/* context.me.id */);
-      return new Promise(resolve => setTimeout(() => resolve(posts), 8000));
-      // return getPosts(context.me.id);
+      const articles = await getArticles(/* context.me.id */);
+      return new Promise(resolve => setTimeout(() => resolve(articles), 8000));
+      // return getArticles(context.me.id);
     },
   },
   /** https://github.com/apollographql/apollo-server/issues/1075#issuecomment-427476421 */

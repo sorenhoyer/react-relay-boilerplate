@@ -1,5 +1,6 @@
-type Post implements Node {
+type Article implements Node {
   id: ID!
+  slug: String!
   title: String!
   user: User!
   text: String

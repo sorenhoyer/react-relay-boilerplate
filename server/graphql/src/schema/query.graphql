@@ -3,7 +3,7 @@ type Query {
 
   me: User
 
-  posts: [Post!]
+  articles: [Article!]
 
-  post(id: ID!): Post
+  article(slug: String!): Article
 }

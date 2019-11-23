@@ -1,5 +1,5 @@
 import { getComments } from './comments';
-import { getPostById, getPosts } from './posts';
+import { getArticleBySlug, getArticles } from './articles';
 import { getUser } from './users';
 
-export { getComments, getPostById, getPosts, getUser };
+export { getComments, getArticleBySlug, getArticles, getUser };

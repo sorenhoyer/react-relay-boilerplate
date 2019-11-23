@@ -8,12 +8,13 @@ export interface Comment {
   id: string;
   text: string;
   userId: string;
-  postId: string;
+  articleId: string;
 }
 
-export interface Post {
+export interface Article {
   id: string;
   userId: string;
+  slug: string;
   title: string;
   text: string;
 }

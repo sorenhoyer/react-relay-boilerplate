@@ -7,8 +7,9 @@ export interface Comment {
   userId: string;
 }
 
-export interface Post {
+export interface Article {
   id: string;
+  slug: string;
   title: string;
   text: string;
   userId: string;
