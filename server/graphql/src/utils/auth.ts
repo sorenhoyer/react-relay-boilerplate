@@ -8,6 +8,12 @@ const tempdb = [
     firstName: 'Søren',
     lastName: 'Høyer',
   },
+  {
+    id: '1e65426d-1390-467d-964b-9046741b19401e65426d-1390-467d-964b-9046741b1940',
+    linkedId: 'auth0|5dd9bed9b338760f072cf224',
+    firstName: 'John',
+    lastName: 'Doe',
+  },
 ];
 
 // eslint-disable-next-line import/prefer-default-export
@@ -16,8 +22,8 @@ export const getUser = (authHeader: string): User | undefined => {
     if (process.env.GRAPHQL_MOCK_USER === 'true') {
       return {
         id: '38447ec4-ce18-401f-ab24-baf7192e005e',
-        firstName: 'John',
-        lastName: 'Doe',
+        firstName: 'Foo',
+        lastName: 'Bar',
       } as User;
     }
 
