@@ -14,7 +14,7 @@ export interface RouteConfig {
   exact?: boolean;
   strict?: boolean;
   component: Resource<any>;
-  prepare: (params: { [key: string]: string }) => { [queryName: string]: PreloadedQuery<any> };
+  prepare?: (params: { [key: string]: string }) => { [queryName: string]: PreloadedQuery<any> };
   routes?: RouteConfig[];
 }
 
@@ -123,10 +123,9 @@ function matchRoute(routes: RouteConfig[], location: Location) {
  * Load the data for the matched route, given the params extracted from the route
  */
 function prepareMatches(matches: MatchedRoute<{}>[]): Entry[] {
-  // eslint-disable-next-line no-shadow
-  return matches.map(match => {
-    const { route, match: matchData } = match;
-    const prepared = route.prepare(matchData.params);
+  return matches.map(m => {
+    const { route, match: matchData } = m;
+    const prepared = route.prepare?.(matchData.params);
     const Component = route.component.get();
     if (Component == null) {
       route.component.load(); // eagerly load

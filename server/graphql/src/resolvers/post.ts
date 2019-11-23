@@ -1,4 +1,4 @@
-import { getComments } from '../datasources/MockAPI';
+import { getComments, getUser } from '../datasources/MockAPI';
 import { Context } from '../types';
 import { Post } from './types';
 
@@ -7,8 +7,8 @@ export default {
     comments: async (parent: Post): Promise<unknown> => {
       return getComments(parent.id);
     },
-    user: async (_: Post, __: unknown, context: Context): Promise<unknown> => {
-      return context.me;
+    user: async (parent: Post, __: unknown, ___: Context): Promise<unknown> => {
+      return getUser(parent.userId);
     },
   },
 };

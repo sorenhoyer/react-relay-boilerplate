@@ -5,22 +5,22 @@ import { Context } from '../types';
 export default {
   Query: {
     me: async (_: unknown, __: unknown, context: Context): Promise<unknown> => {
-      if (!context.me) return new AuthenticationError('Not authenticated!');
+      // if (!context.me) return new AuthenticationError('Not authenticated!');
 
       return new Promise(resolve => setTimeout(() => resolve(context.me), 4000));
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     post: async (_: unknown, args: any, context: Context): Promise<unknown> => {
-      if (!context.me) return new AuthenticationError('Not authenticated!');
+      // if (!context.me) return new AuthenticationError('Not authenticated!');
 
-      const post = await getPostById(args.id, context.me.id);
+      const post = await getPostById(args.id /* , context.me.id */);
       return new Promise(resolve => setTimeout(() => resolve(post), 2000));
       // return getPostById(args.id, context.me.id);
     },
     posts: async (_: unknown, __: unknown, context: Context): Promise<unknown> => {
-      if (!context.me) return new AuthenticationError('Not authenticated!');
+      // if (!context.me) return new AuthenticationError('Not authenticated!');
 
-      const posts = await getPosts(context.me.id);
+      const posts = await getPosts(/* context.me.id */);
       return new Promise(resolve => setTimeout(() => resolve(posts), 8000));
       // return getPosts(context.me.id);
     },

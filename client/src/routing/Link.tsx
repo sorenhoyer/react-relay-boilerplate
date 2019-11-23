@@ -14,11 +14,15 @@ interface Props {
 export default function Link(props: Props) {
   const router = useContext(RoutingContext);
 
+  if (router == null) {
+    throw new Error('<Link> requires a routing context to be set.');
+  }
+
   // When the user clicks, change route
   const changeRoute = useCallback(
     (event: React.MouseEvent) => {
       event.preventDefault();
-      return router?.history.push(props.to);
+      router.history.push(props.to);
     },
     // eslint-disable-next-line react/destructuring-assignment
     [props.to, router],
@@ -28,7 +32,7 @@ export default function Link(props: Props) {
   // we pass this to onMouseEnter, which is a weaker signal
   // that the user *may* navigate to the route.
   const preloadRouteCode = useCallback(() => {
-    return router?.preloadCode(props.to);
+    router.preloadCode(props.to);
     // eslint-disable-next-line react/destructuring-assignment
   }, [props.to, router]);
 
@@ -36,7 +40,7 @@ export default function Link(props: Props) {
   // we pass this to onMouseDown, since this is a stronger
   // signal that the user will likely complete the navigation
   const preloadRoute = useCallback(() => {
-    return router?.preload(props.to);
+    router.preload(props.to);
     // eslint-disable-next-line react/destructuring-assignment
   }, [props.to, router]);
 

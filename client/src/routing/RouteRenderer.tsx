@@ -1,13 +1,17 @@
 import React, { useContext, useState, useEffect, Suspense, useTransition } from 'react';
 import RoutingContext, { Entry } from './RoutingContext';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
-// import './RouteRenderer.css';
 
 const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
 export default function RouterRenderer() {
   // Access the router
   const router = useContext(RoutingContext);
+
+  if (router == null) {
+    throw new Error('RoutingContext not set');
+  }
+
   // Improve the route transition UX by delaying transitions: show the previous route entry
   // for a brief period while the next route is being prepared. See
   // https://reactjs.org/docs/concurrent-mode-patterns.html#transitions
@@ -62,7 +66,7 @@ export default function RouterRenderer() {
   // To achieve this, we reverse the list so we can start at the bottom-most
   // component, and iteratively construct parent components w the previous
   // value as the child of the next one:
-  const reversedItems = [...routeEntry.entries].reverse(); // reverse is in place
+  const reversedItems = [...routeEntry.entries].reverse(); // reverse is in place, but we want a copy so concat
   const firstItem = reversedItems[0];
   // the bottom-most component is special since it will have no children
   // (though we could probably just pass null children to it)
@@ -93,10 +97,6 @@ export default function RouterRenderer() {
   );
 }
 
-export interface RouteComponentProps extends Entry {
-  children?: JSX.Element;
-}
-
 /**
  * The `component` property from the route entry is a Resource, which may or may not be ready.
  * We use a helper child component to unwrap the resource with component.read(), and then
@@ -108,10 +108,10 @@ export interface RouteComponentProps extends Entry {
  * our ErrorBoundary/Suspense components, so we have to ensure that the suspend/error happens
  * in a child component.
  */
-function RouteComponent(props: RouteComponentProps) {
+const RouteComponent: React.FC<Entry> = props => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, react/destructuring-assignment
   const Component = props.component!.read()!;
   const { routeData, prepared } = props;
   // eslint-disable-next-line react/no-children-prop, react/destructuring-assignment
   return <Component routeData={routeData} prepared={prepared} children={props.children} />;
-}
+};

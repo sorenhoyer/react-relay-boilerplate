@@ -1,22 +1,49 @@
 import React from 'react';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
+import { UserManagerSettings } from 'oidc-client';
+import { AuthProvider } from '../../providers/AuthProvider/AuthProvider';
 import RelayEnvironment from '../../relay/RelayEnvironment';
 import routes from '../../routes';
 import RoutingContext from '../../routing/RoutingContext';
 import RouterRenderer from '../../routing/RouteRenderer';
 import createRouter from '../../routing/createRouter';
 
-// Uses the custom router setup to define a router instance that we can pass through context
 const router = createRouter(routes);
+
+const userManagerSettings: UserManagerSettings = {
+  authority: process.env.REACT_RELAY_BOILERPLATE_OIDC_AUTHORITY,
+  client_id: process.env.REACT_RELAY_BOILERPLATE_OIDC_CLIENT_ID,
+  post_logout_redirect_uri: process.env.REACT_RELAY_BOILERPLATE_OIDC_POST_LOGOUT_REDIRECT_URL,
+  redirect_uri: process.env.REACT_RELAY_BOILERPLATE_OIDC_REDIRECT_URI,
+  response_type: process.env.REACT_RELAY_BOILERPLATE_OIDC_RESPONSE_TYPE,
+  scope: process.env.REACT_RELAY_BOILERPLATE_OIDC_SCOPE,
+  extraQueryParams: {
+    audience: process.env.REACT_RELAY_BOILERPLATE_GRAPHQL_ENDPOINT,
+  },
+  // loadUserInfo: true,
+  // filterProtocolClaims: false,
+  metadata: {
+    issuer: process.env.REACT_RELAY_BOILERPLATE_OIDC_ISSUER,
+    authorization_endpoint: process.env.REACT_RELAY_BOILERPLATE_OIDC_AUTHORIZATION_ENDPOINT,
+    token_endpoint: process.env.REACT_RELAY_BOILERPLATE_OIDC_TOKEN_ENDPOINT,
+    userinfo_endpoint: process.env.REACT_RELAY_BOILERPLATE_OIDC_USERINFO_ENDPOINT,
+    revocation_endpoint: process.env.REACT_RELAY_BOILERPLATE_OIDC_REVOCATION_ENDPOINT,
+    jwks_uri: process.env.REACT_RELAY_BOILERPLATE_OIDC_JWKS_URI,
+    end_session_endpoint: `https://dev-nzs3g0ik.auth0.com/v2/logout?returnTo=${encodeURIComponent(
+      process.env.REACT_RELAY_BOILERPLATE_OIDC_END_SESSION_ENDPOINT,
+    )}&client_id=${process.env.REACT_RELAY_BOILERPLATE_OIDC_CLIENT_ID}`, // process.env.REACT_RELAY_BOILERPLATE_OIDC_END_SESSION_ENDPOINT,
+  },
+};
 
 const Root: React.FC<{}> = () => {
   return (
-    <RelayEnvironmentProvider environment={RelayEnvironment}>
-      <RoutingContext.Provider value={router.context}>
-        {/* Render the active route */}
-        <RouterRenderer />
-      </RoutingContext.Provider>
-    </RelayEnvironmentProvider>
+    <AuthProvider settings={userManagerSettings}>
+      <RelayEnvironmentProvider environment={RelayEnvironment}>
+        <RoutingContext.Provider value={router.context}>
+          <RouterRenderer />
+        </RoutingContext.Provider>
+      </RelayEnvironmentProvider>
+    </AuthProvider>
   );
 };
 

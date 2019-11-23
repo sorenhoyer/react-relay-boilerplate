@@ -1,9 +1,7 @@
 import React, { Suspense } from 'react';
 import { graphql } from 'react-relay';
 import { usePreloadedQuery } from 'react-relay/hooks';
-// eslint-disable-next-line import/no-unresolved
-import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes';
-import { AppQuery } from './__generated__/AppQuery.graphql';
+import { Props } from './types';
 import { AppHeader } from '../..';
 
 const appQuery = graphql`
@@ -15,21 +13,14 @@ const appQuery = graphql`
   }
 `;
 
-interface Props {
-  prepared: {
-    appQuery: PreloadedQuery<AppQuery>;
-  };
-  children: React.ReactChildren;
-}
-
 const App: React.FC<Props> = ({ children, prepared }) => {
   const { me } = usePreloadedQuery(appQuery, prepared.appQuery);
 
   return (
     <div>
-      <AppHeader />
+      <pre>{JSON.stringify(me, null, 2)}</pre>
+      <AppHeader me={me} />
       <main>
-        {me.firstName} {me.lastName} is great!
         <Suspense fallback="Loading...">{children}</Suspense>
       </main>
     </div>

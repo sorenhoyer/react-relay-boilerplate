@@ -1,4 +1,12 @@
-import { Comment, Post } from './types';
+import { Comment, Post, User } from './types';
+
+export const users: User[] = [
+  {
+    id: '38447ec4-ce18-401f-ab24-baf7192e005e',
+    firstName: 'John',
+    lastName: 'Doe',
+  },
+];
 
 export const comments: Comment[] = [
   {

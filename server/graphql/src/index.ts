@@ -3,26 +3,21 @@ import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 import path from 'path';
-import { Context, User } from './types';
+import { Context } from './types';
+import { getUser } from './utils/auth';
 
 const typeDefs = mergeTypes(fileLoader(`${__dirname}/schema/**/*.graphql`), { all: true });
 const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers')));
 
 const server = new ApolloServer({
   context: ({ req }): Context => {
-    const me: User = {
-      id: '38447ec4-ce18-401f-ab24-baf7192e005e',
-      firstName: 'John',
-      lastName: 'Doe',
-    };
+    const me = getUser(req.headers.authorization || '');
 
-    const ctx = {
+    return {
       me,
       loaders: {},
       req,
     };
-
-    return ctx;
   },
   playground: process.env.NODE_ENV === 'development',
   resolvers,

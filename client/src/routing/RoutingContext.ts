@@ -10,17 +10,16 @@ export type PreparedQuery = {
   [queryName: string]: PreloadedQuery<any>;
 };
 
-export interface RouteComponentProps extends Entry {
-  children?: JSX.Element;
-}
 export interface Route {
   location: Location;
   entries: Entry[];
 }
 
+export type GenericRouteComponent = React.FC<Entry>;
+
 export interface Entry {
-  component?: Resource<any>;
-  prepared: PreparedQuery;
+  component?: Resource<GenericRouteComponent>;
+  prepared?: PreparedQuery;
   routeData: match<{}>;
 }
 
@@ -37,5 +36,4 @@ const RoutingContext = React.createContext<Router | null>(null);
 /**
  * A custom context instance for our router type
  */
-
 export default RoutingContext;
