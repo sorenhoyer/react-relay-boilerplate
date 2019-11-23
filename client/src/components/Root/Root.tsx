@@ -18,19 +18,21 @@ const userManagerSettings: UserManagerSettings = {
   response_type: process.env.REACT_RELAY_BOILERPLATE_OIDC_RESPONSE_TYPE,
   scope: process.env.REACT_RELAY_BOILERPLATE_OIDC_SCOPE,
   extraQueryParams: {
-    audience: 'http://localhost:4000/graphql',
+    audience: process.env.REACT_RELAY_BOILERPLATE_GRAPHQL_ENDPOINT,
   },
-  loadUserInfo: true,
-  filterProtocolClaims: false,
-  // metadata: {
-  //   issuer: process.env.REACT_RELAY_BOILERPLATE_OIDC_ISSUER,
-  //   authorization_endpoint: process.env.REACT_RELAY_BOILERPLATE_OIDC_AUTHORIZATION_ENDPOINT,
-  //   token_endpoint: process.env.REACT_RELAY_BOILERPLATE_OIDC_TOKEN_ENDPOINT,
-  //   userinfo_endpoint: process.env.REACT_RELAY_BOILERPLATE_OIDC_USERINFO_ENDPOINT,
-  //   revocation_endpoint: process.env.REACT_RELAY_BOILERPLATE_OIDC_REVOCATION_ENDPOINT,
-  //   jwks_uri: process.env.REACT_RELAY_BOILERPLATE_OIDC_JWKS_URI,
-  //   end_session_endpoint: process.env.REACT_RELAY_BOILERPLATE_OIDC_END_SESSION_ENDPOINT,
-  // },
+  // loadUserInfo: true,
+  // filterProtocolClaims: false,
+  metadata: {
+    issuer: process.env.REACT_RELAY_BOILERPLATE_OIDC_ISSUER,
+    authorization_endpoint: process.env.REACT_RELAY_BOILERPLATE_OIDC_AUTHORIZATION_ENDPOINT,
+    token_endpoint: process.env.REACT_RELAY_BOILERPLATE_OIDC_TOKEN_ENDPOINT,
+    userinfo_endpoint: process.env.REACT_RELAY_BOILERPLATE_OIDC_USERINFO_ENDPOINT,
+    revocation_endpoint: process.env.REACT_RELAY_BOILERPLATE_OIDC_REVOCATION_ENDPOINT,
+    jwks_uri: process.env.REACT_RELAY_BOILERPLATE_OIDC_JWKS_URI,
+    end_session_endpoint: `https://dev-nzs3g0ik.auth0.com/v2/logout?returnTo=${encodeURIComponent(
+      process.env.REACT_RELAY_BOILERPLATE_OIDC_END_SESSION_ENDPOINT,
+    )}&client_id=${process.env.REACT_RELAY_BOILERPLATE_OIDC_CLIENT_ID}`, // process.env.REACT_RELAY_BOILERPLATE_OIDC_END_SESSION_ENDPOINT,
+  },
 };
 
 const Root: React.FC<{}> = () => {
