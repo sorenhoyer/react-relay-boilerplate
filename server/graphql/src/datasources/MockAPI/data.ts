@@ -1,14 +1,21 @@
-import { Comment, Article, User } from './types';
+import { RawComment, RawArticle, RawUser } from '../../types';
 
-export const users: User[] = [
+export const users: RawUser[] = [
   {
     id: '38447ec4-ce18-401f-ab24-baf7192e005e',
+    linkedId: 'google-oauth2|118019196908306508755',
+    firstName: 'Søren',
+    lastName: 'Høyer',
+  },
+  {
+    id: '1e65426d-1390-467d-964b-9046741b19401e65426d-1390-467d-964b-9046741b1940',
+    linkedId: 'auth0|5dd9bed9b338760f072cf224',
     firstName: 'John',
     lastName: 'Doe',
   },
 ];
 
-export const comments: Comment[] = [
+export const comments: RawComment[] = [
   {
     id: '59b7c1d6-c71c-4ec5-8542-79ebb30ee7d0',
     text: 'Comment 1',
@@ -35,7 +42,7 @@ export const comments: Comment[] = [
   },
 ];
 
-export const articles: Article[] = [
+export const articles: RawArticle[] = [
   {
     id: 'a7b968bd-7abf-4707-bc0a-ed9faad33166',
     userId: '38447ec4-ce18-401f-ab24-baf7192e005e',

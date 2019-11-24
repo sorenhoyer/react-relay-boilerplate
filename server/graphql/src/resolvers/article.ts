@@ -1,13 +1,12 @@
 import { getComments, getUser } from '../datasources/MockAPI';
-import { Context } from '../types';
-import { Article } from './types';
+import { Context, RawArticle } from '../types';
 
 export default {
   Article: {
-    comments: async (parent: Article): Promise<unknown> => {
+    comments: async (parent: RawArticle): Promise<unknown> => {
       return getComments(parent.id);
     },
-    user: async (parent: Article, __: unknown, ___: Context): Promise<unknown> => {
+    user: async (parent: RawArticle, __: unknown, ___: Context): Promise<unknown> => {
       return getUser(parent.userId);
     },
   },
