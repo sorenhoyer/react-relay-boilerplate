@@ -5,7 +5,7 @@ import Comment from '../Comment/Comment';
 import { Props } from './types';
 
 const commentListItemsFragment = graphql`
-  fragment CommentList_items on Post {
+  fragment CommentList_items on Article {
     comments @__clientField(handle: "comments") {
       id
       ...Comment_item
@@ -18,7 +18,7 @@ const CommentList: React.FC<Props> = ({ items }) => {
 
   return (
     <div>
-      {comments.map(item => {
+      {comments?.map(item => {
         return <Comment key={item.id} item={item} />;
       })}
     </div>

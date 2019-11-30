@@ -3,15 +3,15 @@ import { graphql } from 'react-relay';
 import { usePreloadedQuery } from 'react-relay/hooks';
 // eslint-disable-next-line import/no-unresolved
 import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTypes';
-import { CommentList, Post as PostItem } from '../..';
-import { PostQuery } from './__generated__/PostQuery.graphql';
+import { CommentList, Article as ArticleItem } from '../..';
+import { ArticleQuery } from './__generated__/ArticleQuery.graphql';
 import RoutingContext from '../../../routing/RoutingContext';
 // import { Props } from './types';
 
-const postQuery = graphql`
-  query PostQuery($id: ID!) {
-    post(id: $id) {
-      ...Post_item
+const articleQuery = graphql`
+  query ArticleQuery($slug: String!) {
+    article(slug: $slug) {
+      ...Article_item
       ...CommentList_items
     }
   }
@@ -19,12 +19,12 @@ const postQuery = graphql`
 
 interface Props {
   prepared: {
-    postQuery: PreloadedQuery<PostQuery>;
+    articleQuery: PreloadedQuery<ArticleQuery>;
   };
 }
 
-const Post: React.FC<Props> = ({ /* match, history,  */ prepared }) => {
-  const data = usePreloadedQuery(postQuery, prepared.postQuery);
+const Article: React.FC<Props> = ({ /* match, history,  */ prepared }) => {
+  const data = usePreloadedQuery(articleQuery, prepared.articleQuery);
   const router = useContext(RoutingContext);
 
   return (
@@ -37,12 +37,12 @@ const Post: React.FC<Props> = ({ /* match, history,  */ prepared }) => {
           router.history.goBack();
         }}
       >
-        Back to posts
+        Back to articles
       </a>
-      <PostItem item={data.post} />
-      <CommentList items={data.post} />
+      <ArticleItem item={data.article} />
+      <CommentList items={data.article} />
     </>
   );
 };
 
-export default Post;
+export default Article;

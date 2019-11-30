@@ -9,7 +9,7 @@ const AppHeader: React.FC<any> = ({ me }) => {
     <div>
       <h3>AppHeader</h3>
       <Link to="/">Home</Link>
-      <Link to="/posts">Posts</Link>
+      <Link to="/articles">Articles</Link>
       {me && <Link to="/admin">Admin</Link>}
       {me && <Link to="/profile">{me.firstName}</Link>}
       {me ? (

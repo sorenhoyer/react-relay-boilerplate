@@ -14,6 +14,7 @@ const userManagerSettings: UserManagerSettings = {
   authority: process.env.REACT_RELAY_BOILERPLATE_OIDC_AUTHORITY,
   client_id: process.env.REACT_RELAY_BOILERPLATE_OIDC_CLIENT_ID,
   post_logout_redirect_uri: process.env.REACT_RELAY_BOILERPLATE_OIDC_POST_LOGOUT_REDIRECT_URL,
+  automaticSilentRenew: process.env.REACT_RELAY_BOILERPLATE_OIDC_AUTOMATIC_SILENT_RENEW === 'true',
   redirect_uri: process.env.REACT_RELAY_BOILERPLATE_OIDC_REDIRECT_URI,
   response_type: process.env.REACT_RELAY_BOILERPLATE_OIDC_RESPONSE_TYPE,
   scope: process.env.REACT_RELAY_BOILERPLATE_OIDC_SCOPE,

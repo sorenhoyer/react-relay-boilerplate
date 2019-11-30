@@ -2,8 +2,8 @@ import { preloadQuery } from 'react-relay/hooks';
 import JSResource from './JSResource';
 import { RouteConfig } from './routing/createRouter';
 import PreloadAppQuery, { AppQuery } from './components/routes/App/__generated__/AppQuery.graphql';
-import PreloadPostsQuery, { PostsQuery } from './components/routes/Posts/__generated__/PostsQuery.graphql';
-import PreloadPostQuery, { PostQuery } from './components/routes/Post/__generated__/PostQuery.graphql';
+import PreloadArticlesQuery, { ArticlesQuery } from './components/routes/Articles/__generated__/ArticlesQuery.graphql';
+import PreloadArticleQuery, { ArticleQuery } from './components/routes/Article/__generated__/ArticleQuery.graphql';
 import RelayEnvironment from './relay/RelayEnvironment';
 
 const routes: RouteConfig[] = [
@@ -48,13 +48,13 @@ const routes: RouteConfig[] = [
     },
     routes: [
       {
-        component: JSResource('Posts', () => import('./components/routes/Posts/Posts')),
+        component: JSResource('Articles', () => import('./components/routes/Articles/Articles')),
         exact: true,
-        path: '/posts',
+        path: '/articles',
         prepare: () => ({
-          postsQuery: preloadQuery<PostsQuery>(
+          articlesQuery: preloadQuery<ArticlesQuery>(
             RelayEnvironment,
-            PreloadPostsQuery,
+            PreloadArticlesQuery,
             // The fetchPolicy allows us to specify whether to render from cached
             // data if possible (store-or-network) or only fetch from network
             // (network-only).
@@ -63,18 +63,18 @@ const routes: RouteConfig[] = [
         }),
       },
       {
-        component: JSResource('Post', () => import('./components/routes/Post/Post')),
+        component: JSResource('Article', () => import('./components/routes/Article/Article')),
         prepare: params => ({
-          postQuery: preloadQuery<PostQuery>(
+          articleQuery: preloadQuery<ArticleQuery>(
             RelayEnvironment,
-            PreloadPostQuery,
+            PreloadArticleQuery,
             {
-              id: params.id,
+              slug: params.slug,
             },
             { fetchPolicy: 'store-or-network' },
           ),
         }),
-        path: '/post/:id',
+        path: '/article/:slug',
       },
     ],
   },

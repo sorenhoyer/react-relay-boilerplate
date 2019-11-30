@@ -4,16 +4,16 @@ import { HandleFieldPayload, RecordSourceProxy } from 'relay-runtime';
 
 const CommentsHandler = {
   update(store: RecordSourceProxy, payload: HandleFieldPayload): void {
-    const postRecord = store.get(payload.dataID);
+    const articleRecord = store.get(payload.dataID);
 
-    if (!postRecord) return;
+    if (!articleRecord) return;
 
-    const commentRecords = postRecord.getLinkedRecords(payload.fieldKey);
+    const commentRecords = articleRecord.getLinkedRecords(payload.fieldKey);
 
-    postRecord.setValue(commentRecords ? commentRecords.length : 0, 'commentsCount');
+    articleRecord.setValue(commentRecords ? commentRecords.length : 0, 'commentsCount');
 
-    // link "comments" to postRecord, so the "comments" field in CommentList is not undefined
-    postRecord.setLinkedRecords(commentRecords, payload.handleKey);
+    // link "comments" to articleRecord, so the "comments" field in CommentList is not undefined
+    articleRecord.setLinkedRecords(commentRecords, payload.handleKey);
   },
 };
 
