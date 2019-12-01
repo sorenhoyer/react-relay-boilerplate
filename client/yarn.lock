@@ -5469,6 +5469,11 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-app-auth@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-app-auth/-/react-app-auth-1.2.0.tgz#4f577802f3a1e1e7fa0a22e0fd51b514c26e849f"
+  integrity sha512-S8PcH0FQC3T/G4jNcHl6HjQfpwruNdGIwUiN6V5IYZJ3YJ4DfXlFPDOdd+/1X8c1iQH5eWzRQW/ft7ztdUB/Rg==
+
 react-dom@^0.0.0-experimental-b53ea6ca0:
   version "0.0.0-experimental-b53ea6ca0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.0.0-experimental-b53ea6ca0.tgz#bde4f3fdff6d9d7b54b2325039f7a9602e868a6b"

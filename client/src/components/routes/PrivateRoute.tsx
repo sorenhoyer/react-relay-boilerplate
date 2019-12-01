@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../providers';
+import { AuthContext } from 'react-app-auth';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const PrivateRoute: React.FC<{ component: React.FC<any>; props: any }> = ({ component, props }): JSX.Element => {

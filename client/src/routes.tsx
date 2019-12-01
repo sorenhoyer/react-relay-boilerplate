@@ -8,22 +8,22 @@ import RelayEnvironment from './relay/RelayEnvironment';
 
 const routes: RouteConfig[] = [
   {
-    component: JSResource('Callback', () => import('./components/routes/auth/Callback')),
+    component: JSResource('Callback', () => import('react-app-auth/dist/module/Callback')),
     exact: true,
     path: '/callback',
   },
   {
-    component: JSResource('Logout', () => import('./components/routes/auth/Logout')),
+    component: JSResource('Logout', () => import('react-app-auth/dist/module/Logout')),
     exact: true,
     path: '/logout',
   },
   {
-    component: JSResource('LogoutCallback', () => import('./components/routes/auth/LogoutCallback')),
+    component: JSResource('LogoutCallback', () => import('react-app-auth/dist/module/LogoutCallback')),
     exact: true,
     path: '/logout/callback',
   },
   {
-    component: JSResource('SilentRenew', () => import('./components/routes/auth/SilentRenew')),
+    component: JSResource('SilentRenew', () => import('react-app-auth/dist/module/SilentRenew')),
     exact: true,
     path: '/silent-renew',
   },

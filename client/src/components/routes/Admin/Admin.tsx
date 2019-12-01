@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../../providers';
+import { AuthContext } from 'react-app-auth';
 // import RoutingContext from '../../../routing/RoutingContext';
 
 const Admin: React.FC<{}> = () => {

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
+import { AuthContext } from 'react-app-auth';
 import Link from '../../routing/Link';
-import { AuthContext } from '../../providers';
 
 const AppHeader: React.FC<any> = ({ me }) => {
   const { signinRedirect } = useContext(AuthContext);
