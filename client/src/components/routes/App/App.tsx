@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { graphql } from 'react-relay';
 import { usePreloadedQuery } from 'react-relay/hooks';
 import { Props } from './types';
-import { AppHeader } from '../..';
+import { Navigation } from '../..';
 
 const appQuery = graphql`
   query AppQuery {
@@ -19,7 +19,7 @@ const App: React.FC<Props> = ({ children, prepared }) => {
   return (
     <div>
       <pre>{JSON.stringify(me, null, 2)}</pre>
-      <AppHeader me={me} />
+      <Navigation me={me} />
       <main>
         <Suspense fallback="Loading...">{children}</Suspense>
       </main>

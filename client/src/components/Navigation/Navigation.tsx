@@ -2,12 +2,11 @@ import React, { useContext } from 'react';
 import { AuthContext } from 'react-app-auth';
 import Link from '../../routing/Link';
 
-const AppHeader: React.FC<any> = ({ me }) => {
+const Navigation: React.FC<any> = ({ me }) => {
   const { signinRedirect } = useContext(AuthContext);
 
   return (
-    <div>
-      <h3>AppHeader</h3>
+    <nav>
       <Link to="/">Home</Link>
       <Link to="/articles">Articles</Link>
       {me && <Link to="/admin">Admin</Link>}
@@ -26,8 +25,8 @@ const AppHeader: React.FC<any> = ({ me }) => {
           Login
         </a>
       )}
-    </div>
+    </nav>
   );
 };
 
-export default AppHeader;
+export default Navigation;
