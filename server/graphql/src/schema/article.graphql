@@ -6,3 +6,22 @@ type Article implements Node {
   text: String
   comments: [Comment]
 }
+
+type ArticleEdge {
+  """The item at the end of the edge"""
+  node: Article
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+"""A connection to a list of items."""
+type ArticleConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [ArticleEdge]
+  """A list of nodes."""
+  nodes: [Article]
+  """Identifies the total count of items in the connection."""
+  totalCount: Int!
+}

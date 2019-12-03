@@ -1,4 +1,5 @@
 import { AuthenticationError } from 'apollo-server-express';
+import { connectionFromArray, ConnectionArguments } from 'graphql-relay';
 import { getArticleBySlug, getArticles } from '../datasources/MockAPI';
 import { Context } from '../types';
 
@@ -17,12 +18,13 @@ export default {
       return new Promise(resolve => setTimeout(() => resolve(article), 2000));
       // return getArticleById(args.id, context.me.id);
     },
-    articles: async (_: unknown, __: unknown, context: Context): Promise<unknown> => {
+    articles: async (_: unknown, args: ConnectionArguments, context: Context): Promise<unknown> => {
       // if (!context.me) return new AuthenticationError('Not authenticated!');
 
       const articles = await getArticles(/* context.me.id */);
-      return new Promise(resolve => setTimeout(() => resolve(articles), 8000));
+      // return new Promise(resolve => setTimeout(() => resolve(articles), 8000));
       // return getArticles(context.me.id);
+      return connectionFromArray(articles as unknown[], args);
     },
   },
   /** https://github.com/apollographql/apollo-server/issues/1075#issuecomment-427476421 */

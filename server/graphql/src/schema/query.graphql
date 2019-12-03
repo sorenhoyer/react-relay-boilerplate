@@ -3,7 +3,7 @@ type Query {
 
   me: User
 
-  articles: [Article!]
+  articles(after: String, before: String, first: Int, last: Int): ArticleConnection!
 
   article(slug: String!): Article
 }
