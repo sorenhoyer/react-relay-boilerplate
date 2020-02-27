@@ -3,7 +3,8 @@
 const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const dotenv = require('dotenv').config({ path: `${__dirname}/.env` });
+const dotenvExpand = require('dotenv-expand');
+const dotenv = dotenvExpand(require('dotenv').config({ path: `${__dirname}/.env` }));
 const webpack = require('webpack');
 
 // const APP_PATH = path.resolve(__dirname, 'src');
