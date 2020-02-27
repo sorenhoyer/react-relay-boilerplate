@@ -6,12 +6,6 @@ import { PreloadedQuery } from 'react-relay/lib/relay-experimental/EntryPointTyp
 import { ArticleList } from '../..';
 import { ArticlesQuery } from './__generated__/ArticlesQuery.graphql';
 
-const articlesQuery = graphql`
-  query ArticlesQuery {
-    ...ArticleList_items
-  }
-`;
-
 interface Props {
   prepared: {
     articlesQuery: PreloadedQuery<ArticlesQuery>;
@@ -19,7 +13,14 @@ interface Props {
 }
 
 const Articles: React.FC<Props> = ({ prepared }) => {
-  const data = usePreloadedQuery(articlesQuery, prepared.articlesQuery);
+  const data = usePreloadedQuery(
+    graphql`
+      query ArticlesQuery {
+        ...ArticleList_items
+      }
+    `,
+    prepared.articlesQuery,
+  );
 
   return (
     <div>

@@ -2,10 +2,13 @@
 import { ConnectionHandler, Environment, FetchFunction, Network, RecordSource, Store } from 'relay-runtime';
 import { CommentsHandler } from './handlers';
 
-const fetchRelay: FetchFunction = async (params, variables) => {
-  const token = sessionStorage.getItem(process.env.REACT_RELAY_BOILERPLATE_ACCESS_TOKEN_STORAGE_KEY);
-  const authHeader = token ? { Authorization: `Bearer ${token}` } : {};
+const getAccessToken = (): string => {
+  const sessionKey = process.env.REACT_RELAY_BOILERPLATE_OIDC_SESSION_KEY;
+  const info = sessionKey ? sessionStorage.getItem(sessionKey) : undefined;
+  return info ? JSON.parse(info).access_token : '';
+};
 
+const fetchRelay: FetchFunction = async (params, variables) => {
   const response = await fetch(process.env.REACT_RELAY_BOILERPLATE_GRAPHQL_ENDPOINT, {
     body: JSON.stringify({
       query: params.text,
@@ -14,7 +17,7 @@ const fetchRelay: FetchFunction = async (params, variables) => {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      ...authHeader,
+      Authorization: `Bearer ${getAccessToken()}`,
     },
     method: 'POST',
   });

@@ -38,8 +38,6 @@ const Root: React.FC<{}> = () => {
   return (
     <AuthProvider
       userManagerSettings={userManagerSettings}
-      accessTokenStorageKey="react-relay-boilerplate-access-token"
-      idTokenStorageKey="react-relay-boilerplate-id-token"
       postSignoutRedirectCallbackUri={process.env.REACT_RELAY_BOILERPLATE_OIDC_POST_LOGOUT_REDIRECT_URL}
     >
       <RelayEnvironmentProvider environment={RelayEnvironment}>
